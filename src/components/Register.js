@@ -16,7 +16,7 @@ function Register(props) {
   function handleSubmit(evt) {
     // Запрещаем браузеру переходить по адресу формы
     evt.preventDefault();
-    props.handleRegister(email, password);
+    props.handleRegister({email, password});
 
     // Передаём значения управляемых компонентов во внешний обработчик
     /* onAddPlace({

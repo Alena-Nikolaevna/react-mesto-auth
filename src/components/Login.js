@@ -15,7 +15,7 @@ function Login(props) {
     function handleSubmit(evt) {
         // Запрещаем браузеру переходить по адресу формы
         evt.preventDefault();
-        props.handleLogin(email, password);
+        props.handleLogin({email, password});
 
         // Передаём значения управляемых компонентов во внешний обработчик
         /* onAddPlace({
