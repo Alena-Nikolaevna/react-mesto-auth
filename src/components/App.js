@@ -103,6 +103,11 @@ function App() {
       })
   }
 
+  function handleLogOut() {
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    navigate('/sign-in');
+  }
 
 
 
@@ -162,6 +167,7 @@ function App() {
       .catch((err) => { console.log(err) });
   }
 
+ 
   //Обработчик отображения большой картинки при клике на карточку
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -211,7 +217,9 @@ function App() {
 
       <div className="page">
 
-        <Header loggedIn={isLoggedIn} userEmail={userEmail} />
+        <Header 
+          userEmail={userEmail}
+          onLogout={handleLogOut} />
 
         <Routes>
 
