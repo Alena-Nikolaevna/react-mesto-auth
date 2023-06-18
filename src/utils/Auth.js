@@ -10,7 +10,6 @@
 
 • функция checkToken - принимает jwt, отправляет запрос на /users/me и возвращает данные пользователя*/
 
-
 export const BASE_URL = "https://auth.nomoreparties.co";
 
 // ф-ция проверки результата
@@ -21,7 +20,7 @@ function checkResponse(res) {
   return Promise.reject(res.status);
 }
 
-export const register = ({email, password}) => {
+export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
@@ -30,10 +29,10 @@ export const register = ({email, password}) => {
     },
     body: JSON.stringify({ email, password }),
   })
-  .then(checkResponse)
+    .then(checkResponse)
 };
 
-export const login = ( {email, password} ) => {
+export const login = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -42,7 +41,7 @@ export const login = ( {email, password} ) => {
     },
     body: JSON.stringify({ email, password }),
   })
-  .then(checkResponse)
+    .then(checkResponse)
 };
 
 export const checkToken = (token) => {
@@ -54,8 +53,5 @@ export const checkToken = (token) => {
       'Authorization': `Bearer ${token}`
     },
   })
-  .then(checkResponse)
+    .then(checkResponse)
 };
-
-
-

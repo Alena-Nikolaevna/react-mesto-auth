@@ -1,5 +1,5 @@
 .auth {
-    width: 358px;
+    max-width: 358px;
     margin: 0 auto;
     padding: 60px 0 112px;
 }
@@ -7,6 +7,5 @@
 @media screen and (max-width: 425px) {
     .auth {
         padding: 40px 0 77px;
-
     }
 }

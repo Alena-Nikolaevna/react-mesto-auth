@@ -1,15 +1,15 @@
-.auth__form-button-enter {
-    margin-top: 186px;
-    padding: 0;
-    height: 50px;
+.header__button-link {
     font-size: 18px;
     line-height: 22px;
     font-family: "Inter", Arial, sans-serif, "Helvetica Neue";
     font-weight: 400;
     font-style: normal;
-    text-align: center;
+    color: #a9a9a9;
+    text-align: right;
+    text-decoration: none;
+    transition: 1s ease;
 }
 
-.auth__form-button-enter:hover {
+.header__button-link:hover {
     opacity: .6;
-  }
+}

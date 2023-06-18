@@ -11,14 +11,9 @@ function Header({ userEmail, onLogout }) {
         <Route path='/sign-in' element={<Link to='/sign-up' className='header__link'>Регистрация</Link>} />
         <Route path='/sign-up' element={<Link to='/sign-in' className='header__link'>Войти</Link>} />
 
-
-        <Route
-            path="/" element={
-                <nav className="header__nav">
-                  <span className="header__email">{ userEmail }</span>
-                  <Link className="header__button-link" to="/sign-in" onClick={onLogout}>Выйти</Link>
-                </nav> } />
-
+        <Route path="/" element={<nav className="header__nav">
+          <span className="header__email">{userEmail}</span>
+          <Link className="header__button-link" to="/sign-in" onClick={onLogout}>Выйти</Link></nav>} />
       </Routes>
 
     </header>

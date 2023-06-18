@@ -1,10 +1,9 @@
 //Register — компонент регистрации пользователя с необходимыми стейт-переменными
-
-
 import React from "react";
 import { Link } from "react-router-dom";
 
 function Register(props) {
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -16,7 +15,7 @@ function Register(props) {
   function handleSubmit(evt) {
     // Запрещаем браузеру переходить по адресу формы
     evt.preventDefault();
-    props.handleRegister({email, password});
+    props.handleRegister({ email, password });
 
     // Передаём значения управляемых компонентов во внешний обработчик
     /* onAddPlace({
@@ -34,8 +33,8 @@ function Register(props) {
   }
 
   return (
-
     <section className="auth">
+
       <h2 className="auth__form-heading">Регистрация</h2>
       <div className="auth__container">
 

@@ -11,7 +11,6 @@ import ConfirmDeletePopup from "./ConfirmDeletePopup.js";
 import InfoTooltip from "./InfoTooltip.js";
 import * as auth from "./../utils/Auth.js";
 
-
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";  // импортируем Routes
 import ProtectedRoute from "./ProtectedRoute.js";
 import Login from "./Login.js";
@@ -62,26 +61,20 @@ function App() {
       .catch((err) => { console.log(err) });
   }, []);
 
-  
-
- 
- 
-
-    /** обработчик авторизации пользователя */
-    function handleLogin(data) {
-      return auth
-        .login(data)
-        .then((res) => {
-          localStorage.setItem('jwt', res.token);
-          setUserEmail(data.email);
-          setIsLoggedIn(true);
-          navigate('/', { replace: true });
-        })
-        .catch((err) => {
-          console.log(err);
-        
-        });
-    }
+  /** обработчик авторизации пользователя */
+  function handleLogin(data) {
+    return auth
+      .login(data)
+      .then((res) => {
+        localStorage.setItem('jwt', res.token);
+        setUserEmail(data.email);
+        setIsLoggedIn(true);
+        navigate('/', { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   /** обработчик регистрации пользователя */
   function handleRegister(data) {
@@ -105,7 +98,25 @@ function App() {
     navigate('/sign-in');
   }
 
+  // обработчик проверки пользователяБ, есть ли токен в localStorage
+  function handleCheckToken() {
 
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth
+        .checkToken(jwt)
+        .then(({ data }) => {
+          setUserEmail(data.email);
+          setIsLoggedIn(true);
+          navigate("/", { replace: true });
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+
+  useEffect(() => {
+    handleCheckToken();
+  }, []);
 
 
   function handleCardLike(card) {
@@ -163,7 +174,7 @@ function App() {
       .catch((err) => { console.log(err) });
   }
 
- 
+
   //Обработчик отображения большой картинки при клике на карточку
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -202,23 +213,17 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
-
-  
-
-
-
   return (
     //«Внедряем» данные из currentUser с помощью провайдера контекста
     <CurrentUserContext.Provider value={currentUser}>
 
       <div className="page">
 
-        <Header 
+        <Header
           userEmail={userEmail}
           onLogout={handleLogout} />
 
         <Routes>
-
           <Route path="/" element={
             <ProtectedRoute
               element={Main}
@@ -232,16 +237,15 @@ function App() {
               cards={cards}
               onCardDelete={handleConfirmDeleteClick}
             />} />
-          
-          
-            <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
-            <Route path="/sign-up" element={<Register handleRegister={handleRegister} />} />
 
-            <Route path='*' element={isLoggedIn ? <Navigate to='/' /> : <Navigate to='/sign-in' /> } />
 
+          <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/sign-up" element={<Register handleRegister={handleRegister} />} />
+
+          <Route path='*' element={isLoggedIn ? <Navigate to='/' /> : <Navigate to='/sign-in' />} />
         </Routes>
 
-        <Footer /> 
+        <Footer />
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
@@ -264,9 +268,8 @@ function App() {
           card={removeCard} />
 
         <InfoTooltip isOpen={isInfoTooltipPopupOpen}
-        onClose={closeAllPopups}
-        isConfirmStatus={isSuccessInfoTooltipStatus} />
-
+          onClose={closeAllPopups}
+          isConfirmStatus={isSuccessInfoTooltipStatus} />
 
       </div>
     </CurrentUserContext.Provider>
