@@ -35,7 +35,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  //const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
 
 
@@ -76,7 +76,7 @@ function App() {
         .login(data)
         .then((res) => {
           localStorage.setItem('jwt', res.token);
-      
+          setUserEmail(data.email);
           setIsLoggedIn(true);
           navigate('/');
         })
@@ -86,16 +86,20 @@ function App() {
     }
 
   /** обработчик регистрации пользователя */
-  /*function handleRegister(data) {
+  function handleRegister(data) {
     return auth
       .register(data)
       .then((res) => {
   
+        handleInfoTooltipClick();
+        navigate('/sign-in');
       })
       .catch((err) => {
         console.log(err);
+
+        handleInfoTooltipClick();
       })
-  }*/
+  }
 
 
 
@@ -179,9 +183,9 @@ function App() {
     setRemoveCard(card);
   }
 
-  /*function () {
+  function handleInfoTooltipClick() {
     setIsInfoTooltipPopupOpen(true);
-  }*/
+  }
 
   //Обработчик закрытия попапов
   function closeAllPopups() {
@@ -224,10 +228,10 @@ function App() {
             />} />
           
           
-            <Route path="/sign-in" element={<Login handleLogin={handleLogin}
-             />} />
-            <Route path="/sign-up" element={<Register //handleRegister={handleRegister}
-             />} />
+            <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
+            <Route path="/sign-up" element={<Register handleRegister={handleRegister} />} />
+
+            <Route path='*' element={isLoggedIn ? <Navigate to='/' /> : <Navigate to='/sign-in' /> } />
 
         </Routes>
 
