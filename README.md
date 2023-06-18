@@ -34,4 +34,3 @@
 
 ## __GitHub Pages__
 
-Ссылка на GitHub Pages https://alena-nikolaevna.github.io/react-mesto-auth/
