@@ -36,6 +36,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
+  const [isSuccessInfoTooltipStatus, setIsSuccessInfoTooltipStatus] = useState(false);
 
 
 
@@ -78,10 +79,11 @@ function App() {
           localStorage.setItem('jwt', res.token);
           setUserEmail(data.email);
           setIsLoggedIn(true);
-          navigate('/');
+          navigate('/', { replace: true });
         })
         .catch((err) => {
           console.log(err);
+          setIsInfoTooltipPopupOpen(true);
         });
     }
 
@@ -90,13 +92,13 @@ function App() {
     return auth
       .register(data)
       .then((res) => {
-  
+        setIsSuccessInfoTooltipStatus(true);
         handleInfoTooltipClick();
         navigate('/sign-in');
       })
       .catch((err) => {
         console.log(err);
-
+        setIsSuccessInfoTooltipStatus(false);
         handleInfoTooltipClick();
       })
   }
@@ -209,7 +211,7 @@ function App() {
 
       <div className="page">
 
-        <Header />
+        <Header loggedIn={isLoggedIn} userEmail={userEmail} />
 
         <Routes>
 
@@ -258,7 +260,8 @@ function App() {
           card={removeCard} />
 
         <InfoTooltip isOpen={isInfoTooltipPopupOpen}
-        onClose={closeAllPopups} />
+        onClose={closeAllPopups}
+        isConfirmStatus={isSuccessInfoTooltipStatus} />
 
 
       </div>
