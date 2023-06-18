@@ -98,7 +98,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        setIsSuccessInfoTooltipStatus(true);
+        setIsSuccessInfoTooltipStatus(false);
         handleInfoTooltipClick(false);
       })
   }
