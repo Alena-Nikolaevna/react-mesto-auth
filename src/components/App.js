@@ -83,7 +83,7 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-          setIsInfoTooltipPopupOpen(true);
+        
         });
     }
 
@@ -98,8 +98,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        setIsSuccessInfoTooltipStatus(false);
-        handleInfoTooltipClick();
+        setIsSuccessInfoTooltipStatus(true);
+        handleInfoTooltipClick(false);
       })
   }
 
