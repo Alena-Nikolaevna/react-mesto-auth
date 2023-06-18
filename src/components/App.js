@@ -31,14 +31,10 @@ function App() {
 
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
-
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [isSuccessInfoTooltipStatus, setIsSuccessInfoTooltipStatus] = useState(false);
-
-
 
   const [selectedCard, setSelectedCard] = useState(null);
   const [removeCard, setRemoveCard] = useState(null);
@@ -103,7 +99,7 @@ function App() {
       })
   }
 
-  function handleLogOut() {
+  function handleLogout() {
     localStorage.removeItem('jwt');
     setIsLoggedIn(false);
     navigate('/sign-in');
@@ -219,7 +215,7 @@ function App() {
 
         <Header 
           userEmail={userEmail}
-          onLogout={handleLogOut} />
+          onLogout={handleLogout} />
 
         <Routes>
 
