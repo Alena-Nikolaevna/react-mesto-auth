@@ -34,4 +34,4 @@
 
 GitHub Pages:
 
-Ссылка на GitHub Pages: https://alena-nikolaevna.github.io/react-mesto-auth/  [Проект Mesto:](#регистрация-и-авторизация)
+Ссылка на GitHub Pages: https://alena-nikolaevna.github.io/react-mesto-auth/
