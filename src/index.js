@@ -4,14 +4,14 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import "./index.css";
 
-import { Hashrouter } from 'react-router-dom'; // импортируем BrowserRouter
+import { BrowserRouter } from 'react-router-dom'; // импортируем BrowserRouter
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Hashrouter>
+    <BrowserRouter>
       <App />
-    </Hashrouter>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
